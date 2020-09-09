@@ -77,8 +77,8 @@ public class TicTacToeModel {
 
         /* Initialize board by filling every square with empty marks */
         
-        for(int i =0; i < board.length;i++ ) {
-        	for(int j = 0; j < board[i].length;i++) {
+        for(int i =0; i < board.length;++i ) {
+        	for(int j = 0; j < board[i].length;++j) {
         		board[i][j]=Mark.EMPTY;
         	}
         	
@@ -95,12 +95,15 @@ public class TicTacToeModel {
         r=row;
         c =col;
         if(isValidSquare(row,col)==true && isSquareMarked(row,col)==false) {
+        	
         	if(xTurn==true) {
         		board[row][col]=Mark.X;
+        	
         		xTurn=false;
         		
         	}
         	else if(xTurn==false) {
+        		
         		board[row][col]=Mark.O;
         		
         	}
@@ -315,14 +318,25 @@ public class TicTacToeModel {
     @Override
     public String toString() {
         
-        //StringBuilder output = new StringBuilder("  ");
+        StringBuilder output = new StringBuilder("  ");
         
         /* Output the board contents as a string (see examples) */
         
+        for(int i =0; i < board.length;++i ) {
+        	output.append("\n");
+        	for(int j = 0; j < board[i].length;++j) {
+        		output.append(board[i][j].toString());
+        	}
+        	
+        }
         
-        
-        //return output.toString();
-    	return Arrays.toString(board);
+ 
+
+   
+         	
+         
+        return output.toString();
+    	//return Arrays.toString(board);
         
     }
     

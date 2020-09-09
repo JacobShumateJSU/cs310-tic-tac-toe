@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TicTacToeView {
     
     private final Scanner keyboard;
-    
+    TicTacToeModel marking = new TicTacToeModel();
     /* CONSTRUCTOR */
 	
     public TicTacToeView() {
@@ -29,7 +29,7 @@ public class TicTacToeView {
         int col = colInput.nextInt();
         TicTacToeMove move = new TicTacToeMove(row,col);
         
-        TicTacToeModel marking = new TicTacToeModel();
+        
         if(marking.makeMark(row,col)==false) {
         	showInputError();
         }
