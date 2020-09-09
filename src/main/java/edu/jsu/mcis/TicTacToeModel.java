@@ -97,14 +97,19 @@ public class TicTacToeModel {
         if(isValidSquare(row,col)==true && isSquareMarked(row,col)==false) {
         	
         	if(xTurn==true) {
+        		//System.out.println("cords:"+row+col);
         		board[row][col]=Mark.X;
-        	
+        		isMarkWin(Mark.X);
+        		getResult();
+        		//System.out.println(board[row][col]);
         		xTurn=false;
         		
         	}
         	else if(xTurn==false) {
-        		
         		board[row][col]=Mark.O;
+        		isMarkWin(Mark.O);
+        		getResult();
+        		xTurn=true;
         		
         	}
         	return true;
@@ -185,92 +190,74 @@ public class TicTacToeModel {
 	
     private boolean isMarkWin(Mark mark) {
         
-        /* Check the squares of the board to see if the specified mark is the
-           winner */
-        
-        
-        if(xTurn==true) {
-        	//check row
-        	boolean win=true;
-        	for(int i=0; i<board.length; i++){
-        		if(board[r][i]!=Mark.X){
-        			win=false;
-        			break;
-        		}
-        	}
-        	//check column
-        	 win=true;
-             for(int i=0; i<board.length; i++){
-                 if(board[i][c]!=Mark.X){
-                     win=false;
-                     break;
-                 }
-             }
-           //check back diagonal
-             win=true;
-             for(int i=0; i<board.length; i++){
-                 if(board[i][i]!=Mark.X){
-                     win=false;
-                     break;
-                 }
-             }
-           //check forward diagonal
-             win=true;
-             for(int i=0; i<board.length; i++){
-                 if(board[i][board.length-i-1]!=Mark.X){
-                     win=false;
-                     break;
-                 }
-             }
-        	
-        	if(win) {
-        		winner=Mark.X;
-        		return true;
-        		
-        	}
-        }
-        
-        if(xTurn==false) {
-        	//check row
-        	boolean win=true;
-        	for(int i=0; i<board.length; i++){
-        		if(board[r][i]!=Mark.O){
-        			win=false;
-        			break;
-        		}
-        	}
-        	//check column
-        	 win=true;
-             for(int i=0; i<board.length; i++){
-                 if(board[i][c]!=Mark.O){
-                     win=false;
-                     break;
-                 }
-             }
-           //check back diagonal
-             win=true;
-             for(int i=0; i<board.length; i++){
-                 if(board[i][i]!=Mark.O){
-                     win=false;
-                     break;
-                 }
-             }
-           //check forward diagonal
-             win=true;
-             for(int i=0; i<board.length; i++){
-                 if(board[i][board.length-i-1]!=Mark.O){
-                     win=false;
-                     break;
-                 }
-             }
-        	
-        	if(win) {
-        		winner=Mark.O;
-        		return true;
-        		
-        	}
-        }
-        
+        //rows
+    	int tallyRows=0;
+    	int tallyCol=0;
+    	int tallydiag1=0;
+    	int tallydiag2=0;
+    	//rows
+    	for(int i=0; i < board.length;++i) {
+    		for(int j=0; j < board[i].length;++j) {
+    			if(board[i][j]==mark){
+    				tallyRows+=1;
+    				if(tallyRows==board.length) {
+    					winner=mark;
+    					return true;
+    				}
+    			}
+    			
+    		}
+    		tallyRows=0;
+    	}
+    	//columns
+    	for(int i=0; i < board.length;++i) {
+    		for(int j=0; j < board[i].length;++j) {
+    			if(board[j][i]==mark){
+    				tallyCol+=1;
+    				if(tallyCol==board.length) {
+    					winner=mark;
+    					return true;
+    				}
+    			}
+    			
+    		}
+    		tallyCol=0;
+    	}
+    	
+    	//left starting diagonal
+    	
+    	
+    	for(int i=0; i < board.length;++i) {
+    		for(int j=0; j < board[i].length;++j) {
+    			if(board[i][i]==mark){
+    				System.out.println(board[i][i]);
+    				tallydiag1+=1;
+    				System.out.println(tallydiag1);
+    				if(tallydiag1==board.length) {
+    					winner=mark;
+    					return true;
+    				}
+    			}
+    			
+    		}
+    		tallydiag1=0;
+    	}
+    	/*
+    	//right starting diagonal
+    	for(int i=0; i < board.length;++i) {
+    		for(int j=0; j < board[i].length;++j) {
+    			if(board[i][board.length-i-1]==mark){
+    				tallydiag2+=1;
+    				if(tallydiag2==board.length) {
+    					winner=mark;
+    					return true;
+    				}
+    			}
+    			
+    		}
+    		tallydiag2=0;
+    	}*/
+    	
         
        
         return false;
@@ -329,6 +316,7 @@ public class TicTacToeModel {
         	}
         	
         }
+        
         
  
 

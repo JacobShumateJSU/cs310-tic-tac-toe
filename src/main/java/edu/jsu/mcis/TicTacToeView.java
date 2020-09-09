@@ -23,19 +23,17 @@ public class TicTacToeView {
         
         Scanner rowInput = new Scanner(System.in);
         Scanner colInput = new Scanner(System.in);
+        
         System.out.println("Enter the row you'd like to move to:");
         int row=rowInput.nextInt();
         System.out.println("Enter the column you'd like to move to:");
         int col = colInput.nextInt();
-        TicTacToeMove move = new TicTacToeMove(row,col);
         
         
-        if(marking.makeMark(row,col)==false) {
-        	showInputError();
-        }
+        
        
         //return TicTacToeMove(row,col); // remove this line later!
-        return move;
+        return new TicTacToeMove(row,col);
 
     }
 
