@@ -12,7 +12,7 @@ public class TicTacToeModel {
     public Mark winner;
     /* ENUM TYPE DEFINITIONS */
     
-    /* Mark (represents X, O, or an empty square */
+    /* Mark (represents X, O, or an empty square  */
     
     public enum Mark {
         
