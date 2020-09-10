@@ -296,12 +296,18 @@ public class TicTacToeModel {
         StringBuilder output = new StringBuilder("  ");
         
         /* Output the board contents as a string (see examples) */
-        
+        for(int z=0; z < board.length; ++z) {
+        	output.append(z+"");
+        }
+        output.append("\n");
         for(int i =0; i < board.length;++i ) {
-        	output.append("\n");
+        	output.append(i+" ");
         	for(int j = 0; j < board[i].length;++j) {
+        
         		output.append(board[i][j].toString());
+        		
         	}
+        	output.append("\n");
         	
         }
         
