@@ -97,19 +97,19 @@ public class TicTacToeModel {
         if(isValidSquare(row,col)==true && isSquareMarked(row,col)==false) {
         	
         	if(xTurn==true) {
-        		//System.out.println("cords:"+row+col);
         		board[row][col]=Mark.X;
+        		xTurn=false;
         		isMarkWin(Mark.X);
         		getResult();
-        		//System.out.println(board[row][col]);
-        		xTurn=false;
+        		
         		
         	}
         	else if(xTurn==false) {
         		board[row][col]=Mark.O;
+        		xTurn=true;
         		isMarkWin(Mark.O);
         		getResult();
-        		xTurn=true;
+        		
         		
         	}
         	return true;
@@ -117,7 +117,7 @@ public class TicTacToeModel {
         else {
         
         	return false;
-        }// remove this line later!
+        }
         
     }
 	
@@ -190,12 +190,12 @@ public class TicTacToeModel {
 	
     private boolean isMarkWin(Mark mark) {
         
-        //rows
+       
     	int tallyRows=0;
     	int tallyCol=0;
     	int tallydiag1=0;
     	int tallydiag2=0;
-    	//rows
+    	//rows and columns
     	for(int i=0; i < board.length;++i) {
     		for(int j=0; j < board[i].length;++j) {
     			if(board[i][j]==mark){
@@ -205,13 +205,6 @@ public class TicTacToeModel {
     					return true;
     				}
     			}
-    			
-    		}
-    		tallyRows=0;
-    	}
-    	//columns
-    	for(int i=0; i < board.length;++i) {
-    		for(int j=0; j < board[i].length;++j) {
     			if(board[j][i]==mark){
     				tallyCol+=1;
     				if(tallyCol==board.length) {
@@ -222,30 +215,19 @@ public class TicTacToeModel {
     			
     		}
     		tallyCol=0;
+    		tallyRows=0;
     	}
     	
-    	//left starting diagonal
-    	
-    	
-    	for(int i=0; i < board.length;++i) {
-    		for(int j=0; j < board[i].length;++j) {
+    	//diagonals
+    		for(int i=0; i < board.length;++i) {
     			if(board[i][i]==mark){
-    				System.out.println(board[i][i]);
     				tallydiag1+=1;
-    				System.out.println(tallydiag1);
     				if(tallydiag1==board.length) {
     					winner=mark;
     					return true;
     				}
     			}
     			
-    		}
-    		tallydiag1=0;
-    	}
-    	/*
-    	//right starting diagonal
-    	for(int i=0; i < board.length;++i) {
-    		for(int j=0; j < board[i].length;++j) {
     			if(board[i][board.length-i-1]==mark){
     				tallydiag2+=1;
     				if(tallydiag2==board.length) {
@@ -255,26 +237,32 @@ public class TicTacToeModel {
     			}
     			
     		}
+    		tallydiag1=0;
     		tallydiag2=0;
-    	}*/
     	
         
-       
-        return false;
-       
-        
 
-       // remove this line later!
+        return false;
 
     }
 	
     private boolean isTie() {
         
-        /* Check the squares of the board to see if the game is a tie */
-        
-        // INSERT YOUR CODE HERE
-
-        return false; // remove this line later!
+         //Check the squares of the board to see if the game is a tie 
+       
+    	for(int i=0; i < board.length;++i) {
+    		for(int j=0; j < board[i].length;++j) {
+    			if(board[i][j] == Mark.EMPTY) {
+    				return false;
+    			}
+    			
+    		}
+    	}
+    	
+    	
+    	
+    		return true;
+    	
         
     }
 
@@ -324,7 +312,6 @@ public class TicTacToeModel {
          	
          
         return output.toString();
-    	//return Arrays.toString(board);
         
     }
     
