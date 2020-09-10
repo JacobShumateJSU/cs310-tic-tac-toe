@@ -1,3 +1,5 @@
+package edu.jsu.mcis;
+
 import java.util.Arrays;
 
 public class TicTacToeModel {
