@@ -1,8 +1,10 @@
+package edu.jsu.mcis;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-package edu.jsu.mcis;
+
 
 public class TicTacToeController implements ActionListener{
 

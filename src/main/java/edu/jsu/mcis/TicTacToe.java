@@ -1,6 +1,8 @@
+package edu.jsu.mcis;
+
 import javax.swing.JFrame;
 
-package edu.jsu.mcis;
+
 
 public class TicTacToe {
     
