@@ -35,14 +35,12 @@ public class TicTacToeController implements ActionListener{
     public void actionPerformed(ActionEvent event) {
         JButton buttonClicked = (JButton) event.getSource();
         String name = buttonClicked.getName();
-        if(!(model.isGameover())){
-        	int row= Character.getNumericValue(name.charAt(6));
-        	int col= Character.getNumericValue(name.charAt(7));
-        	model.makeMark(row,col);
-        	view.updateSquares();
-        }
-        else
-        {
+        int row= Character.getNumericValue(name.charAt(6));
+        int col= Character.getNumericValue(name.charAt(7));
+        model.makeMark(row,col);
+        view.updateSquares();
+        
+        if(model.isGameover()){
         	view.disableSquares();
         	view.showResult(model.getResult().toString());
         }
