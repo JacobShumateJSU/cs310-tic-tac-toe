@@ -1,3 +1,5 @@
+import javax.swing.JFrame;
+
 package edu.jsu.mcis;
 
 public class TicTacToe {
@@ -25,9 +27,11 @@ public class TicTacToe {
 
         TicTacToeController controller = new TicTacToeController(width);
         
-        /* Start Main Loop */
-        
-        controller.start();
+        JFrame win = new JFrame("Tic-Tac-Toe");
+        win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
+        win.add(controller.getView());
+        win.pack();
+        win.setVisible(true);
         
     }
     

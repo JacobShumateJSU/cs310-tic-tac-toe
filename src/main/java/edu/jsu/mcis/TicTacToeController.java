@@ -1,6 +1,10 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
 package edu.jsu.mcis;
 
-public class TicTacToeController {
+public class TicTacToeController implements ActionListener{
 
     private final TicTacToeModel model;
     private final TicTacToeView view;
@@ -12,34 +16,34 @@ public class TicTacToeController {
         /* Initialize model, view, and width */
 
         model = new TicTacToeModel(width);
-        view = new TicTacToeView();
+        view = new TicTacToeView(this, width);
         
     }
 
-    public void start() {
-    
-        /* MAIN LOOP (repeats until game is over) */
 
-        /* Display the board using the View's "showBoard()", then use
-           "getNextMove()" to get the next move from the player.  Enter
-           the move (using the Model's "makeMark()", or display an error
-           using the View's "showInputError()" if the move is invalid. */
-    	
-        while(model.isGameover()==false) {
-        	view.showBoard(model.toString());
-        	TicTacToeMove nextMove = view.getNextMove(model.isXTurn());
-        	if(model.makeMark(nextMove.getRow(),nextMove.getCol())==false) {
-            	view.showInputError();
-            }
-        	
+    public String getMarkAsString(int row, int col) {       
+        return (model.getMark(row, col).toString());       
+    }
+   
+    public TicTacToeView getView() {       
+        return view;       
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        JButton buttonClicked = (JButton) event.getSource();
+        String name = buttonClicked.getName();
+        if(!(model.isGameover())){
+        	int row= Character.getNumericValue(name.charAt(6));
+        	int col= Character.getNumericValue(name.charAt(7));
+        	model.makeMark(row,col);
+        	view.updateSquares();
         }
-        
-        
-        /* After the game is over, show the final board and the winner */
-
-        view.showBoard(model.toString());
-
-        view.showResult(model.getResult().toString());
+        else
+        {
+        	view.disableSquares();
+        	view.showResult(model.getResult().toString());
+        }
         
     }
 
